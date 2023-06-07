@@ -11,7 +11,7 @@ import SwiftUI
 struct Error_NilApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BigIdeaPage()
         }
     }
 }
