@@ -11,6 +11,7 @@
 		3BDCA3EE2A301E6600BB7A2A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDCA3ED2A301E6600BB7A2A /* ContentView.swift */; };
 		3BDCA3F02A301E6600BB7A2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA3EF2A301E6600BB7A2A /* Assets.xcassets */; };
 		3BDCA3F32A301E6600BB7A2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA3F22A301E6600BB7A2A /* Preview Assets.xcassets */; };
+		3D3E71712A3021D0001B23B7 /* WelcomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E71702A3021D0001B23B7 /* WelcomePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		3BDCA3ED2A301E6600BB7A2A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3BDCA3EF2A301E6600BB7A2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BDCA3F22A301E6600BB7A2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3D3E71702A3021D0001B23B7 /* WelcomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				3BDCA3ED2A301E6600BB7A2A /* ContentView.swift */,
 				3BDCA3EF2A301E6600BB7A2A /* Assets.xcassets */,
 				3BDCA3F12A301E6600BB7A2A /* Preview Content */,
+				3D3E71702A3021D0001B23B7 /* WelcomePage.swift */,
 			);
 			path = "Error Nil";
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3E71712A3021D0001B23B7 /* WelcomePage.swift in Sources */,
 				3BDCA3EE2A301E6600BB7A2A /* ContentView.swift in Sources */,
 				3BDCA3EC2A301E6600BB7A2A /* Error_NilApp.swift in Sources */,
 			);
