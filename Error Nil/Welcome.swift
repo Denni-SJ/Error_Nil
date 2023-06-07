@@ -1,5 +1,5 @@
 //
-//  WelcomePage.swift
+//  Welcome.swift
 //  Error Nil
 //
 //  Created by Junling Guan on 7/6/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WelcomePage: View {
+struct Welcome: View {
     var body: some View {
         VStack {
             Image("logo3")
@@ -20,9 +20,9 @@ struct WelcomePage: View {
     }
 }
 
-struct WelcomePage_Previews: PreviewProvider {
+struct Welcome_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomePage()
+        Welcome()
             .previewDevice("iPhone 14 Pro")
     }
 }
