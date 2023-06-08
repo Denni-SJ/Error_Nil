@@ -12,6 +12,7 @@
 		3BDCA3F02A301E6600BB7A2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA3EF2A301E6600BB7A2A /* Assets.xcassets */; };
 		3BDCA3F32A301E6600BB7A2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA3F22A301E6600BB7A2A /* Preview Assets.xcassets */; };
 		3D3E71732A302510001B23B7 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E71722A302510001B23B7 /* Welcome.swift */; };
+		3D3E71762A31572E001B23B7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3D3E71752A31572E001B23B7 /* RealmSwift */; };
 		6B8F578D2A302A90008837F6 /* BigIdeaPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F578C2A302A90008837F6 /* BigIdeaPage.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3E71762A31572E001B23B7 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +91,9 @@
 			dependencies = (
 			);
 			name = "Error Nil";
+			packageProductDependencies = (
+				3D3E71752A31572E001B23B7 /* RealmSwift */,
+			);
 			productName = "Error Nil";
 			productReference = 3BDCA3E82A301E6600BB7A2A /* Error Nil.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +122,9 @@
 				Base,
 			);
 			mainGroup = 3BDCA3DF2A301E6500BB7A2A;
+			packageReferences = (
+				3D3E71742A31572E001B23B7 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 3BDCA3E92A301E6600BB7A2A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -275,6 +283,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Error Nil/Preview Content\"";
+				DEVELOPMENT_TEAM = CL6JV732ZX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -303,6 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Error Nil/Preview Content\"";
+				DEVELOPMENT_TEAM = CL6JV732ZX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -345,6 +355,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3D3E71742A31572E001B23B7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3D3E71752A31572E001B23B7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D3E71742A31572E001B23B7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3BDCA3E02A301E6500BB7A2A /* Project object */;
 }

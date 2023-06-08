@@ -120,9 +120,10 @@ struct BigIdeaPage: View {
                  // Content of the pop-up view
                  BigIdeaPopupView()
              }
+                 .navigationBarBackButtonHidden(true)
          }
 
-     }
+     }///
 
 
  }
