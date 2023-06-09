@@ -13,6 +13,7 @@
 		3BDCA3F32A301E6600BB7A2A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BDCA3F22A301E6600BB7A2A /* Preview Assets.xcassets */; };
 		3D3E71732A302510001B23B7 /* Welcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E71722A302510001B23B7 /* Welcome.swift */; };
 		6B8F578D2A302A90008837F6 /* BigIdeaPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F578C2A302A90008837F6 /* BigIdeaPage.swift */; };
+		770D46022A32D9C400E1B6FD /* PersonaePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770D46012A32D9C400E1B6FD /* PersonaePage.swift */; };
 		772E09952A315298002D2411 /* SolutionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772E09942A315298002D2411 /* SolutionPage.swift */; };
 		772E09982A31570E002D2411 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 772E09972A31570E002D2411 /* Realm */; };
 		772E099A2A31570E002D2411 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 772E09992A31570E002D2411 /* RealmSwift */; };
@@ -27,6 +28,7 @@
 		3BDCA3F22A301E6600BB7A2A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3D3E71722A302510001B23B7 /* Welcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Welcome.swift; sourceTree = "<group>"; };
 		6B8F578C2A302A90008837F6 /* BigIdeaPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigIdeaPage.swift; sourceTree = "<group>"; };
+		770D46012A32D9C400E1B6FD /* PersonaePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaePage.swift; sourceTree = "<group>"; };
 		772E09942A315298002D2411 /* SolutionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionPage.swift; sourceTree = "<group>"; };
 		9FE670252A32A5D400FCE809 /* InvestigationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				6B8F578C2A302A90008837F6 /* BigIdeaPage.swift */,
 				772E09942A315298002D2411 /* SolutionPage.swift */,
 				9FE670252A32A5D400FCE809 /* InvestigationPage.swift */,
+				770D46012A32D9C400E1B6FD /* PersonaePage.swift */,
 			);
 			path = "Error Nil";
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				3BDCA3EE2A301E6600BB7A2A /* ContentView.swift in Sources */,
 				6B8F578D2A302A90008837F6 /* BigIdeaPage.swift in Sources */,
 				3BDCA3EC2A301E6600BB7A2A /* Error_NilApp.swift in Sources */,
+				770D46022A32D9C400E1B6FD /* PersonaePage.swift in Sources */,
 				9FE670262A32A5D400FCE809 /* InvestigationPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

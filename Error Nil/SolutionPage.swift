@@ -220,6 +220,7 @@ struct SolutionPage: View {
                                  Text("User Stories")
                                      .font(.system(size: 16))
                                      .bold()
+                                     .padding(.top,25)
          
                                  
                                  Text("In this step makes it more specific.")
