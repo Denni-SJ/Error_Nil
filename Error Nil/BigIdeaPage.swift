@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct BigIdeaPage: View {
-     @State private var bigIdea: String = ""
-     @State private var essentialQuestion: String = ""
+//     @State var userBigIdea1: String = ""
+//     @State private var essentialQuestion: String = ""
      @State private var showAlert = false
      @State private var showInformation = false
+    //let user = UserInfo()
+    @StateObject private var viewModel = ViewModel()
+    
+
+   @State private var database = ""
 
      var body: some View {
          ZStack {
@@ -49,7 +54,9 @@ struct BigIdeaPage: View {
                      .padding(.bottom, 10.0)
 
                  ZStack(alignment: .topLeading) {
-                     TextEditor(text: $bigIdea)
+                     
+                     
+                     TextEditor(text: $viewModel.BigIdea1)
                          .padding(.vertical, 3)
                          .padding(.horizontal, 5)
                          .border(Color.black, width: 1)
@@ -57,7 +64,7 @@ struct BigIdeaPage: View {
                          .frame(height: 100)
                          .lineLimit(5)
 
-                     if bigIdea.isEmpty {
+                     if viewModel.BigIdea1.isEmpty {
 
                          Text("Write your Big Idea here...")
                              .foregroundColor(.gray)
@@ -75,7 +82,7 @@ struct BigIdeaPage: View {
 
 
                  ZStack(alignment: .topLeading) {
-                     TextEditor(text: $essentialQuestion)
+                     TextEditor(text: $viewModel.BigIdea2)
                          .padding(.vertical, 3)
                          .padding(.horizontal, 5)
                          .border(Color.black, width: 1)
@@ -83,7 +90,7 @@ struct BigIdeaPage: View {
                          .frame(height: 100)
                          .lineLimit(5)
 
-                     if essentialQuestion.isEmpty {
+                     if viewModel.BigIdea2.isEmpty {
 
                          Text("Write your Essential Question here...")
                              .foregroundColor(.gray)
@@ -98,6 +105,7 @@ struct BigIdeaPage: View {
                      Spacer()
                      Button(action: {
                          showAlert = true
+                         viewModel.saveResponse()
                      }) {
                          Text("Done")
                              .padding()
