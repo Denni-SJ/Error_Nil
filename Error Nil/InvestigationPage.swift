@@ -12,6 +12,9 @@ struct investigationPage: View {
      @State private var refinedChallenge: String = ""
      @State private var showAlert = false
      @State private var showInformation = false
+    
+    @Environment(\.presentationMode) var presentationMode
+
 
      var body: some View {
          ZStack {
@@ -20,9 +23,14 @@ struct investigationPage: View {
              VStack(spacing: 5) {
 
                  HStack {
-                     Image(systemName: "arrow.backward")
-                         .font(.system(size: 30, weight: .bold))
-                         .foregroundColor(.black)
+                     Button(action: {
+                                         presentationMode.wrappedValue.dismiss()
+                                     }) {
+                                         Image(systemName: "arrow.backward")
+                                             .font(.largeTitle)
+                                             .foregroundColor(.black)
+                                     }
+
                      Spacer()
 
                      Text("Investigation")

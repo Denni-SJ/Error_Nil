@@ -96,6 +96,7 @@ struct ProgressWheel_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView { // Wrap the Welcome view with NavigationView
             ProgressWheel()
+                .navigationBarBackButtonHidden(true) 
         }
         .previewDevice("iPhone 14 Pro")
     }
