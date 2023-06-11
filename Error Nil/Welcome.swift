@@ -7,29 +7,27 @@
 import SwiftUI
 
 struct Welcome: View {
-    @State var isTapped: Bool = false
+    @State var goToWheel: Bool = false
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Image("logo3")
-                    .resizable()
-                    .frame(width: 260, height: 260, alignment: .center)
-                Text("Touch anywhere to start")
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onTapGesture {
-                isTapped = true
-            }
-            .background(
-                NavigationLink(destination: BigIdeaPage(), isActive: $isTapped) {
-                    EmptyView()
-                }
-                .hidden()
-            )
+        VStack {
+            Image("logo3")
+                .resizable()
+                .frame(width: 260, height: 260, alignment: .center)
+            Text("Touch anywhere to start")
+                .font(.system(size: 30, weight: .bold))
+                .foregroundColor(.black)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onTapGesture {
+            goToWheel = true
+        }
+        .background(
+            NavigationLink(destination: ProgressWheel(), isActive: $goToWheel) {
+                EmptyView()
+            }
+            .hidden()
+        )
     }
 }
 

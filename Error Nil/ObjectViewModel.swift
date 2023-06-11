@@ -2,14 +2,16 @@
 //  ObjectViewModel.swift
 //  Error Nil
 //
-//  Created by J on 11/6/2023.
+//  Created by Antonio Perez on 9/6/2023.
 //
 
-import Foundation
+import SwiftUI
 import RealmSwift
 
 
 class ViewModel: ObservableObject {
+    //@Published var iterator: Int = 0
+    //@Published var didPerformInitialization: Bool = false
 //    @Published var ID: String = ""
     @Published var BigIdea1: String = ""
     @Published var BigIdea2: String = ""
@@ -21,6 +23,22 @@ class ViewModel: ObservableObject {
     @Published var Solution1: String = ""
     @Published var Solution2: String = ""
     
+   
+   
+    
+    func clearDatabase() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+                print("Database cleared successfully")
+            }
+        } catch let error {
+            print("Error clearing database: \(error)")
+        }
+
+      }
+
     func saveResponse() {
         do {
             let realm = try Realm()
@@ -43,4 +61,24 @@ class ViewModel: ObservableObject {
             print("Error saving to Realm: \(error)")
         }
     }
+ 
+
+    func fetchDataFromDatabase() {
+            do {
+                let realm = try Realm()
+                guard let userInfo = realm.objects(UserInfo.self).first else {
+                    print("No data found in the database")
+                    return
+                }
+                
+                // Update the view model properties with the fetched values
+                BigIdea1 = userInfo.BigIdea1
+                BigIdea2 = userInfo.BigIdea2
+                // Update the remaining properties accordingly
+                
+                print("Data fetched from the database: \(BigIdea1) and \(BigIdea2)")
+            } catch {
+                print("Error fetching data from Realm: \(error)")
+            }
+        }
 }
