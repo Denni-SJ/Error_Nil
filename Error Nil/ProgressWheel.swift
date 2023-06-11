@@ -2,39 +2,94 @@
 //  ProgressWheel.swift
 //  Error Nil
 //
-//  Created by Antonio Perez on 9/6/2023.
+//  Created by Junling Guan on 11/6/2023.
 //
 
 import SwiftUI
 
 struct ProgressWheel: View {
-    @State var goToBigIdea: Bool = false
-    
     var body: some View {
-        NavigationView {
             VStack {
-                Image("logo3")
-                    .resizable()
-                    .frame(width: 260, height: 260, alignment: .center)
-                Text("Progress Wheel Placeholder")
-                    .font(.system(size: 30, weight: .bold))
-                    .foregroundColor(.black)
+                Text("Progress Wheel")
+                    .font(.title)
+                
+                Button(action: {
+                    // Action for Button BigIdeaPage
+                }) {
+                    NavigationLink(destination: BigIdeaPage()) {
+                        Text("BigIdeaPage")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+                
+//                Button(action: {
+//                    // Action for Button ChallengePage
+//                }) {
+//                    NavigationLink(destination: ChallengePage()) {
+//                        Text("Challenge")
+//                            .font(.headline)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                    }
+//                }
+                
+                Button(action: {
+                    // Action for Button investigationPage
+                }) {
+                    NavigationLink(destination: investigationPage()) {
+                        Text("investigationPage")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+                Button(action: {
+                    // Action for Button PersonaePage
+                }) {
+                    NavigationLink(destination: PersonaePage()) {
+                        Text("PersonaePage")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+                Button(action: {
+                    // Action for Button SolutionPage
+                }) {
+                    NavigationLink(destination: SolutionPage()) {
+                        Text("SolutionPage")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+//                Button(action: {
+//                    // Action for Button Prototype
+//                }) {
+//                    NavigationLink(destination: investigationPage()) {
+//                        Text("prototype")
+//                            .font(.headline)
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(10)
+//                    }
+//                }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onTapGesture {
-                goToBigIdea = true
-            }
-            .background(
-                 NavigationLink(destination: BigIdeaPage(), isActive: $goToBigIdea) {
-                     EmptyView()
-                 }
-                 .hidden()
-             )
-           
-            
+        
         }
-        .navigationBarBackButtonHidden(true)
-    }
 }
 
 struct ProgressWheel_Previews: PreviewProvider {

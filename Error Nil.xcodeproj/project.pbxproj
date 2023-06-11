@@ -76,13 +76,13 @@
 				3BDCA3EF2A301E6600BB7A2A /* Assets.xcassets */,
 				3BDCA3F12A301E6600BB7A2A /* Preview Content */,
 				3D3E71722A302510001B23B7 /* Welcome.swift */,
+				BF26AABA2A35E41D004C274D /* ProgressWheel.swift */,
 				6B8F578C2A302A90008837F6 /* BigIdeaPage.swift */,
-				772E09942A315298002D2411 /* SolutionPage.swift */,
 				9FE670252A32A5D400FCE809 /* InvestigationPage.swift */,
 				770D46012A32D9C400E1B6FD /* PersonaePage.swift */,
+				772E09942A315298002D2411 /* SolutionPage.swift */,
 				BF26AAB62A35E0C6004C274D /* Database.swift */,
 				BF26AAB82A35E1CF004C274D /* ObjectViewModel.swift */,
-				BF26AABA2A35E41D004C274D /* ProgressWheel.swift */,
 			);
 			path = "Error Nil";
 			sourceTree = "<group>";
