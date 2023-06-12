@@ -9,19 +9,22 @@ import SwiftUI
 
 struct BigIdeaPage: View {
     
-   // @State private var didPerformInitialization: Bool = false
     @AppStorage("didPerformInitialization") private var didPerformInitialization: Bool = false
 
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var showInformation = false
-    //@State private var iterator: Int = 0
     @State private var goBack = false
     @StateObject private var viewModel = ViewModel()
     
-   
+    // 11/6 Ling's update
+    @AppStorage("BigIdea1") private var storageBigIdea1 = ""
+    @AppStorage("BigIdea2") private var storageBigIdea2 = ""
+
     
     @State private var database = ""
+    
+    
     
     var body: some View {
         NavigationView{
@@ -76,7 +79,7 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-                        if viewModel.BigIdea1.isEmpty {
+                        if storageBigIdea1.isEmpty {
                             
                             Text("Write your Big Idea here...")
                                 .foregroundColor(.gray)
@@ -101,14 +104,15 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-                        if viewModel.BigIdea2.isEmpty {
+                        if storageBigIdea2.isEmpty {
                             
                             Text("Write your Essential Question here...")
                                 .foregroundColor(.gray)
                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
                         }
-                    }
                     
+                    }
+                
                     
                     Spacer()
                         .padding(.top, 40)
@@ -116,7 +120,9 @@ struct BigIdeaPage: View {
                         Spacer()
                         Button(action: {
                             showAlert = true
-                            viewModel.saveResponse()
+                            viewModel.saveToDatabase()
+                            storageBigIdea1 = viewModel.BigIdea1
+                            storageBigIdea2 = viewModel.BigIdea2
                         }) {
                             Text("Done")
                                 .padding()
@@ -148,10 +154,9 @@ struct BigIdeaPage: View {
             if !didPerformInitialization {
                 viewModel.clearDatabase()
             didPerformInitialization = true
-                           }
+            }
             viewModel.fetchDataFromDatabase()
-            
-                    }
+        }
         .navigationBarBackButtonHidden(true)
     }
 }

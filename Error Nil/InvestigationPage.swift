@@ -12,9 +12,7 @@ struct investigationPage: View {
      @State private var refinedChallenge: String = ""
      @State private var showAlert = false
      @State private var showInformation = false
-    
-    @Environment(\.presentationMode) var presentationMode
-
+     @Environment(\.presentationMode) var presentationMode
 
      var body: some View {
          ZStack {
