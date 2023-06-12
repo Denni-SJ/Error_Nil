@@ -8,27 +8,19 @@
 import SwiftUI
 
 struct BigIdeaPage: View {
-    
     @AppStorage("didPerformInitialization") private var didPerformInitialization: Bool = false
-
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var showInformation = false
-    @State private var goBack = false
     @StateObject private var viewModel = ViewModel()
     
     // 11/6 Ling's update
     @AppStorage("BigIdea1") private var storageBigIdea1 = ""
     @AppStorage("BigIdea2") private var storageBigIdea2 = ""
 
-    
-    @State private var database = ""
-    
-    
-    
+
     var body: some View {
         NavigationView{
-         
             ZStack {
                 Color(.sRGB, red: 1, green: 1, blue: 1)
                     .edgesIgnoringSafeArea(.all)
@@ -145,9 +137,7 @@ struct BigIdeaPage: View {
                     // Content of the pop-up view
                     BigIdeaPopupView()
                 }
-                
             }
-          
         }
         .onAppear {
             print("didPerformInitialization value: \(didPerformInitialization)")

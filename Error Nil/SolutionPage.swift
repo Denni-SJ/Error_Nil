@@ -8,131 +8,148 @@
 import SwiftUI
 
 struct SolutionPage: View {
-     @State private var solution: String = ""
-     @State private var appConcept: String = ""
-     @State private var showAlert = false
-     @State private var showInformation = false
+//     @State private var solution: String = ""
+//     @State private var appConcept: String = ""
+    @State private var showAlert = false
+    @State private var showInformation = false
+    @StateObject private var viewModel = ViewModel()
+    @AppStorage("solution") private var solution = ""
+    @AppStorage("appConcept") private var appConcept = ""
+    @AppStorage("didPerformInitialization") private var didPerformInitialization: Bool = false
+    
+
     
     @Environment(\.presentationMode) var presentationMode
 
 
      var body: some View {
-         ZStack {
-             Color(.sRGB, red: 1, green: 1, blue: 1)
-                 .edgesIgnoringSafeArea(.all)
-             VStack(spacing: 5) {
+         NavigationView{
+             ZStack {
+                 
+                 Color(.sRGB, red: 1, green: 1, blue: 1)
+                     .edgesIgnoringSafeArea(.all)
+                 VStack(spacing: 5) {
 
-                 HStack {
-                     Button(action: {
-                                         presentationMode.wrappedValue.dismiss()
-                                     }) {
-                                         Image(systemName: "arrow.backward")
-                                             .font(.largeTitle)
-                                             .foregroundColor(.black)
-                                     }
-                     
-                     Spacer()
+                     HStack {
+                         Button(action: {
+                                             presentationMode.wrappedValue.dismiss()
+                                         }) {
+                                             Image(systemName: "arrow.backward")
+                                                 .font(.largeTitle)
+                                                 .foregroundColor(.black)
+                                         }
+                         
+                         Spacer()
 
-                     Text("Solution")
-                         .font(.largeTitle)
-                         .frame(maxWidth: .infinity, alignment: .center)
-                     Spacer()
-
-                     Button(action: {
-                         showInformation = true
-                     }) {
-                         Image(systemName: "info.circle")
+                         Text("Solution")
                              .font(.largeTitle)
-                             .foregroundColor(.black)
+                             .frame(maxWidth: .infinity, alignment: .center)
+                         Spacer()
+
+                         Button(action: {
+                             showInformation = true
+                         }) {
+                             Image(systemName: "info.circle")
+                                 .font(.largeTitle)
+                                 .foregroundColor(.black)
+                         }
+
+
+                     }
+                         .padding()
+
+                     Text("Write your solution concept")
+                         .frame(maxWidth: .infinity, alignment: .leading)
+                         .font(.system(size: 24))
+                         .padding(.top, 40)
+                         .padding(.bottom, 10.0)
+
+                     ZStack(alignment: .topLeading) {
+                         TextEditor(text: $solution)
+                             .padding(.vertical, 3)
+                             .padding(.horizontal, 5)
+                             .border(Color.black, width: 1)
+                             .multilineTextAlignment(.leading)
+                             .frame(height: 100)
+                             .lineLimit(5)
+
+                         if solution.isEmpty {
+
+                             Text("Write your Solution Idea here...")
+                                 .foregroundColor(.gray)
+                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                         }
                      }
 
 
+
+                     Text("Write your App Concept")
+                         .frame(maxWidth: .infinity, alignment: .leading)
+                         .font(.system(size: 24))
+                         .padding(.top, 80)
+                         .padding(.bottom, 10.0)
+
+
+                     ZStack(alignment: .topLeading) {
+                         TextEditor(text: $appConcept)
+                             .padding(.vertical, 3)
+                             .padding(.horizontal, 5)
+                             .border(Color.black, width: 1)
+                             .multilineTextAlignment(.leading)
+                             .frame(height: 100)
+                             .lineLimit(5)
+
+                         if appConcept.isEmpty {
+
+                             Text("Write your App Concept here...")
+                                 .foregroundColor(.gray)
+                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                         }
+                     }
+
+
+                     Spacer()
+                         .padding(.top, 40)
+                     HStack {
+                         Spacer()
+                         Button(action: {
+                             showAlert = true
+                         }) {
+                             Text("Done")
+                                 .padding()
+                                 .background(Color.green)
+                                 .foregroundColor(.white)
+                                 .font(.title)
+                                 .cornerRadius(10)
+                         }
+                     }
+
+                     Spacer()
                  }
                      .padding()
-
-                 Text("Write your solution concept")
-                     .frame(maxWidth: .infinity, alignment: .leading)
-                     .font(.system(size: 24))
-                     .padding(.top, 40)
-                     .padding(.bottom, 10.0)
-
-                 ZStack(alignment: .topLeading) {
-                     TextEditor(text: $solution)
-                         .padding(.vertical, 3)
-                         .padding(.horizontal, 5)
-                         .border(Color.black, width: 1)
-                         .multilineTextAlignment(.leading)
-                         .frame(height: 100)
-                         .lineLimit(5)
-
-                     if solution.isEmpty {
-
-                         Text("Write your Solution Idea here...")
-                             .foregroundColor(.gray)
-                             .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                     }
+                     .alert(isPresented: $showAlert) {
+                     Alert(title: Text("Congratulations!"),
+                         message: Text("Remeber you can go back anytime to edit this milestone"),
+                         dismissButton: .default(Text("Dismiss")))
                  }
-
-
-
-                 Text("Write your App Concept")
-                     .frame(maxWidth: .infinity, alignment: .leading)
-                     .font(.system(size: 24))
-                     .padding(.top, 80)
-                     .padding(.bottom, 10.0)
-
-
-                 ZStack(alignment: .topLeading) {
-                     TextEditor(text: $appConcept)
-                         .padding(.vertical, 3)
-                         .padding(.horizontal, 5)
-                         .border(Color.black, width: 1)
-                         .multilineTextAlignment(.leading)
-                         .frame(height: 100)
-                         .lineLimit(5)
-
-                     if appConcept.isEmpty {
-
-                         Text("Write your App Concept here...")
-                             .foregroundColor(.gray)
-                             .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                     }
+                     .sheet(isPresented: $showInformation) {
+                     // Content of the pop-up view
+                     SolutionPagePopupView()
                  }
-
-
-                 Spacer()
-                     .padding(.top, 40)
-                 HStack {
-                     Spacer()
-                     Button(action: {
-                         showAlert = true
-                     }) {
-                         Text("Done")
-                             .padding()
-                             .background(Color.green)
-                             .foregroundColor(.white)
-                             .font(.title)
-                             .cornerRadius(10)
-                     }
-                 }
-
-                 Spacer()
              }
-                 .padding()
-                 .alert(isPresented: $showAlert) {
-                 Alert(title: Text("Congratulations!"),
-                     message: Text("Remeber you can go back anytime to edit this milestone"),
-                     dismissButton: .default(Text("Dismiss")))
-             }
-                 .sheet(isPresented: $showInformation) {
-                 // Content of the pop-up view
-                 SolutionPagePopupView()
-             }
+
          }
-
-     }
-
-
+         .padding()
+         .alert(isPresented: $showAlert) {
+             Alert(title: Text("Congratulations!"),
+                   message: Text("Remeber you can go back anytime to edit this milestone"),
+                   dismissButton: .default(Text("Dismiss")))
+         }
+         .sheet(isPresented: $showInformation) {
+             // Content of the pop-up view
+             BigIdeaPopupView()
+         }
+    }
  }
 
  struct SolutionPagePopupView: View {

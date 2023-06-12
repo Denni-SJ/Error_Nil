@@ -8,131 +8,146 @@
 import SwiftUI
 
 struct PersonaePage: View {
-     @State private var personae: String = ""
-     @State private var opportunityStatement: String = ""
-     @State private var showAlert = false
-     @State private var showInformation = false
+    @State private var showAlert = false
+    @State private var showInformation = false
+    @StateObject private var viewModel = ViewModel()
     
+    @AppStorage("personae1") private var personae = ""
+    @AppStorage("personae2") private var opportunityStatement = ""
+    @AppStorage("didPerformInitialization") private var didPerformInitialization: Bool = false
+
     @Environment(\.presentationMode) var presentationMode
 
 
      var body: some View {
-         ZStack {
-             Color(.sRGB, red: 1, green: 1, blue: 1)
-                 .edgesIgnoringSafeArea(.all)
-             VStack(spacing: 5) {
+         NavigationView{
+             ZStack {
+                 Color(.sRGB, red: 1, green: 1, blue: 1)
+                     .edgesIgnoringSafeArea(.all)
+                 VStack(spacing: 5) {
 
-                 HStack {
-                     Button(action: {
-                                         presentationMode.wrappedValue.dismiss()
-                                     }) {
-                                         Image(systemName: "arrow.backward")
-                                             .font(.largeTitle)
-                                             .foregroundColor(.black)
-                                     }
-                     
-                     Spacer()
+                     HStack {
+                         Button(action: {
+                                             presentationMode.wrappedValue.dismiss()
+                                         }) {
+                                             Image(systemName: "arrow.backward")
+                                                 .font(.largeTitle)
+                                                 .foregroundColor(.black)
+                                         }
+                         
+                         Spacer()
 
-                     Text("Personae")
-                         .font(.largeTitle)
-                         .frame(maxWidth: .infinity, alignment: .center)
-                     Spacer()
-
-                     Button(action: {
-                         showInformation = true
-                     }) {
-                         Image(systemName: "info.circle")
+                         Text("Personae")
                              .font(.largeTitle)
-                             .foregroundColor(.black)
+                             .frame(maxWidth: .infinity, alignment: .center)
+                         Spacer()
+
+                         Button(action: {
+                             showInformation = true
+                         }) {
+                             Image(systemName: "info.circle")
+                                 .font(.largeTitle)
+                                 .foregroundColor(.black)
+                         }
+
+
+                     }
+                         .padding()
+
+                     Text("Create a persona of the person you built this app for")
+                         .frame(maxWidth: .infinity, alignment: .leading)
+                         .font(.system(size: 24))
+                         .padding(.top, 40)
+                         .padding(.bottom, 10.0)
+
+                     ZStack(alignment: .topLeading) {
+                         TextEditor(text: $viewModel.Personae1)
+                             .padding(.vertical, 3)
+                             .padding(.horizontal, 5)
+                             .border(Color.black, width: 1)
+                             .multilineTextAlignment(.leading)
+                             .frame(height: 100)
+                             .lineLimit(5)
+
+                         if personae.isEmpty {
+
+                             Text("Describe the persona here... \n\nHint: Don't be afraid to be specific ")
+                                 .foregroundColor(.gray)
+                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                         }
                      }
 
 
+
+                     Text("Create an Opportunity Statement")
+                         .frame(maxWidth: .infinity, alignment: .leading)
+                         .font(.system(size: 24))
+                         .padding(.top, 80)
+                         .padding(.bottom, 10.0)
+
+
+                     ZStack(alignment: .topLeading) {
+                         TextEditor(text: $viewModel.Personae2)
+                             .padding(.vertical, 3)
+                             .padding(.horizontal, 5)
+                             .border(Color.black, width: 1)
+                             .multilineTextAlignment(.leading)
+                             .frame(height: 100)
+                             .lineLimit(5)
+
+                         if opportunityStatement.isEmpty {
+
+                             Text("Write down the Opportunity Statement here... ")
+                                 .foregroundColor(.gray)
+                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                         }
+                     }
+
+
+                     Spacer()
+                         .padding(.top, 40)
+                     HStack {
+                         Spacer()
+                         Button(action: {
+                             showAlert = true
+                             viewModel.saveToDatabase()
+                             personae = viewModel.Personae1
+                             opportunityStatement = viewModel.Personae2
+                         }) {
+                             Text("Done")
+                                 .padding()
+                                 .background(Color.green)
+                                 .foregroundColor(.white)
+                                 .font(.title)
+                                 .cornerRadius(10)
+                         }
+                     }
+
+                     Spacer()
                  }
                      .padding()
-
-                 Text("Create a persona of the person you built this app for")
-                     .frame(maxWidth: .infinity, alignment: .leading)
-                     .font(.system(size: 24))
-                     .padding(.top, 40)
-                     .padding(.bottom, 10.0)
-
-                 ZStack(alignment: .topLeading) {
-                     TextEditor(text: $personae)
-                         .padding(.vertical, 3)
-                         .padding(.horizontal, 5)
-                         .border(Color.black, width: 1)
-                         .multilineTextAlignment(.leading)
-                         .frame(height: 100)
-                         .lineLimit(5)
-
-                     if personae.isEmpty {
-
-                         Text("Describe the persona here... \n\nHint: Don't be afraid to be specific ")
-                             .foregroundColor(.gray)
-                             .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                     }
+                     .alert(isPresented: $showAlert) {
+                     Alert(title: Text("Congratulations!"),
+                         message: Text("Remeber you can go back anytime to edit this milestone"),
+                         dismissButton: .default(Text("Dismiss")))
                  }
-
-
-
-                 Text("Create an Opportunity Statement")
-                     .frame(maxWidth: .infinity, alignment: .leading)
-                     .font(.system(size: 24))
-                     .padding(.top, 80)
-                     .padding(.bottom, 10.0)
-
-
-                 ZStack(alignment: .topLeading) {
-                     TextEditor(text: $opportunityStatement)
-                         .padding(.vertical, 3)
-                         .padding(.horizontal, 5)
-                         .border(Color.black, width: 1)
-                         .multilineTextAlignment(.leading)
-                         .frame(height: 100)
-                         .lineLimit(5)
-
-                     if opportunityStatement.isEmpty {
-
-                         Text("Write down the Opportunity Statement here... ")
-                             .foregroundColor(.gray)
-                             .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                     }
+                     .sheet(isPresented: $showInformation) {
+                     // Content of the pop-up view
+                     PersonaePopupView()
                  }
-
-
-                 Spacer()
-                     .padding(.top, 40)
-                 HStack {
-                     Spacer()
-                     Button(action: {
-                         showAlert = true
-                     }) {
-                         Text("Done")
-                             .padding()
-                             .background(Color.green)
-                             .foregroundColor(.white)
-                             .font(.title)
-                             .cornerRadius(10)
-                     }
-                 }
-
-                 Spacer()
              }
-                 .padding()
-                 .alert(isPresented: $showAlert) {
-                 Alert(title: Text("Congratulations!"),
-                     message: Text("Remeber you can go back anytime to edit this milestone"),
-                     dismissButton: .default(Text("Dismiss")))
-             }
-                 .sheet(isPresented: $showInformation) {
-                 // Content of the pop-up view
-                 PersonaePopupView()
-             }
+
          }
-
-     }
-
-
+         .onAppear {
+             print("didPerformInitialization value: \(didPerformInitialization)")
+             if !didPerformInitialization {
+                 viewModel.clearDatabase()
+             didPerformInitialization = true
+             }
+             viewModel.fetchDataFromDatabase()
+         }
+         .navigationBarBackButtonHidden(true)
+         }
  }
 
  struct PersonaePopupView: View {

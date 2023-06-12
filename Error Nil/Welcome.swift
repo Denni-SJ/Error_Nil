@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct Welcome: View {
-    @State var goToWheel: Bool = false
+    @State var isTapped: Bool = false
     
     var body: some View {
         VStack {
@@ -20,10 +20,10 @@ struct Welcome: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
-            goToWheel = true
+            isTapped = true
         }
         .background(
-            NavigationLink(destination: ProgressWheel(), isActive: $goToWheel) {
+            NavigationLink(destination: ProgressWheel(), isActive: $isTapped) {
                 EmptyView()
             }
             .hidden()
