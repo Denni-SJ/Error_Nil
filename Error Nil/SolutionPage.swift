@@ -65,7 +65,7 @@ struct SolutionPage: View {
                          .padding(.bottom, 10.0)
 
                      ZStack(alignment: .topLeading) {
-                         TextEditor(text: $solution)
+                         TextEditor(text: $viewModel.Solution1)
                              .padding(.vertical, 3)
                              .padding(.horizontal, 5)
                              .border(Color.black, width: 1)
@@ -73,12 +73,12 @@ struct SolutionPage: View {
                              .frame(height: 100)
                              .lineLimit(5)
 
-                         if solution.isEmpty {
-
-                             Text("Write your Solution Idea here...")
-                                 .foregroundColor(.gray)
-                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                         }
+//                         if solution.isEmpty {
+//
+//                             Text("Write your Solution Idea here...")
+//                                 .foregroundColor(.gray)
+//                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                         }
                      }
 
 
@@ -91,7 +91,7 @@ struct SolutionPage: View {
 
 
                      ZStack(alignment: .topLeading) {
-                         TextEditor(text: $appConcept)
+                         TextEditor(text: $viewModel.Solution2)
                              .padding(.vertical, 3)
                              .padding(.horizontal, 5)
                              .border(Color.black, width: 1)
@@ -147,7 +147,7 @@ struct SolutionPage: View {
          }
          .sheet(isPresented: $showInformation) {
              // Content of the pop-up view
-             BigIdeaPopupView()
+             SolutionPagePopupView()
          }
     }
  }

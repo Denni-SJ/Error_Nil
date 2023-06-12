@@ -69,12 +69,12 @@ struct investigationPage: View {
                         .frame(height: 100)
                         .lineLimit(5)
                     
-                    if investigation.isEmpty {
-                        
-                        Text("Write your investigations here...")
-                            .foregroundColor(.gray)
-                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                    }
+//                    if investigation.isEmpty {
+//
+//                        Text("Write your investigations here...")
+//                            .foregroundColor(.gray)
+//                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                    }
                 }
                 
                 
@@ -95,12 +95,12 @@ struct investigationPage: View {
                         .frame(height: 100)
                         .lineLimit(5)
                     
-                    if refinedChallenge.isEmpty {
-                        
-                        Text("Write your Refined Challenge here...")
-                            .foregroundColor(.gray)
-                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                    }
+//                    if refinedChallenge.isEmpty {
+//
+//                        Text("Write your Refined Challenge here...")
+//                            .foregroundColor(.gray)
+//                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                    }
                 }
                 
                 

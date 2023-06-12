@@ -95,12 +95,12 @@ struct PersonaePage: View {
                              .frame(height: 100)
                              .lineLimit(5)
 
-                         if opportunityStatement.isEmpty {
-
-                             Text("Write down the Opportunity Statement here... ")
-                                 .foregroundColor(.gray)
-                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                         }
+//                         if opportunityStatement.isEmpty {
+//
+//                             Text("Write down the Opportunity Statement here... ")
+//                                 .foregroundColor(.gray)
+//                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                         }
                      }
 
 

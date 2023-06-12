@@ -71,12 +71,11 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-                        if storageBigIdea1.isEmpty {
-                            
-                            Text("Write your Big Idea here...")
-                                .foregroundColor(.gray)
-                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                        }
+//                        if storageBigIdea1.isEmpty {
+//                            Text("Write your Big Idea here...")
+//                                .foregroundColor(.gray)
+//                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                        }
                     }
                     
    
@@ -96,12 +95,12 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-                        if storageBigIdea2.isEmpty {
-                            
-                            Text("Write your Essential Question here...")
-                                .foregroundColor(.gray)
-                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                        }
+//                        if storageBigIdea1.isEmpty {
+//                            
+//                            Text("Write your Essential Question here...")
+//                                .foregroundColor(.gray)
+//                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                        }
                     
                     }
                 
