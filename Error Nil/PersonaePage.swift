@@ -68,9 +68,7 @@ struct PersonaePage: View {
                              .multilineTextAlignment(.leading)
                              .frame(height: 100)
                              .lineLimit(5)
-                             .onTapGesture {
-                                 UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
-                             }
+                             
                          
                          if viewModel.Personae1.isEmpty {
                              Text("Describe the persona here... \n\nHint: Don't be afraid to be specific ")
@@ -100,9 +98,7 @@ struct PersonaePage: View {
                                  .multilineTextAlignment(.leading)
                                  .frame(height: 100)
                                  .lineLimit(5)
-                                 .onTapGesture {
-                                     UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
-                                 }
+                                 
                              
                              if viewModel.Personae2.isEmpty {
                                  Text("Write down the Opportunity Statement here... ")
