@@ -28,15 +28,16 @@ struct SolutionPage: View {
                  
                  Color(.sRGB, red: 1, green: 1, blue: 1)
                      .edgesIgnoringSafeArea(.all)
+                 
                  VStack(spacing: 5) {
-
                      HStack {
                          Button(action: {
-                                             presentationMode.wrappedValue.dismiss()
-                                         }) {
-                                             Image(systemName: "arrow.backward")
-                                                 .font(.largeTitle)
-                                                 .foregroundColor(.black)
+                             presentationMode
+                             .wrappedValue.dismiss()
+                             
+                         }) {Image(systemName: "arrow.backward")
+                                 .font(.largeTitle)
+                                 .foregroundColor(.black)
                                          }
                          
                          Spacer()
@@ -57,6 +58,8 @@ struct SolutionPage: View {
 
                      }
                          .padding()
+                     
+
 
                      Text("Write your solution concept")
                          .frame(maxWidth: .infinity, alignment: .leading)
@@ -139,16 +142,18 @@ struct SolutionPage: View {
              }
 
          }
-         .padding()
-         .alert(isPresented: $showAlert) {
-             Alert(title: Text("Congratulations!"),
-                   message: Text("Remeber you can go back anytime to edit this milestone"),
-                   dismissButton: .default(Text("Dismiss")))
-         }
-         .sheet(isPresented: $showInformation) {
-             // Content of the pop-up view
-             SolutionPagePopupView()
-         }
+//         .padding()
+//         .alert(isPresented: $showAlert) {
+//             Alert(title: Text("Congratulations!"),
+//                   message: Text("Remeber you can go back anytime to edit this milestone"),
+//                   dismissButton: .default(Text("Dismiss")))
+//         }
+//         .sheet(isPresented: $showInformation) {
+//             // Content of the pop-up view
+//             SolutionPagePopupView()
+//         }
+         
+         .navigationBarBackButtonHidden(true)
     }
  }
 

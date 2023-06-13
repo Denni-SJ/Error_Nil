@@ -75,18 +75,18 @@ struct ProgressWheel: View {
                             .cornerRadius(10)
                     }
                 }
-//                Button(action: {
-//                    // Action for Button Prototype
-//                }) {
-//                    NavigationLink(destination: investigationPage()) {
-//                        Text("prototype")
-//                            .font(.headline)
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(10)
-//                    }
-//                }
+                Button(action: {
+                    // Action for Button Prototype
+                }) {
+                    NavigationLink(destination: PrototypePage()) {
+                        Text("Prototype")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
             }
         
         }
