@@ -114,12 +114,22 @@ struct PersonaePage: View {
                              personae = viewModel.Personae1
                              opportunityStatement = viewModel.Personae2
                          }) {
-                             Text("Done")
-                                 .padding()
-                                 .background(Color.green)
-                                 .foregroundColor(.white)
-                                 .font(.title)
-                                 .cornerRadius(10)
+                             if personae.isEmpty && opportunityStatement.isEmpty{
+                                 Text("Done")
+                                     .padding()
+                                     .background(Color.green)
+                                     .foregroundColor(.white)
+                                     .font(.title)
+                                     .cornerRadius(10)
+                             }
+                             else{
+                                 Text("Update")
+                                     .padding()
+                                     .background(Color.green)
+                                     .foregroundColor(.white)
+                                     .font(.title)
+                                     .cornerRadius(10)
+                             }
                          }
                      }
 
