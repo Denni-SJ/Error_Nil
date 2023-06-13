@@ -8,155 +8,165 @@
 import SwiftUI
 
 struct investigationPage: View {
-    //     @State private var investigation: String = ""
-    //     @State private var refinedChallenge: String = ""
     @AppStorage("didPerformInitialization") private var didPerformInitialization: Bool = false
     
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var showInformation = false
-    @StateObject private var viewModel = ViewModel()
-    @AppStorage("investigation") private var investigation = ""
-    @AppStorage("refinedChallenge") private var refinedChallenge = ""
+    @State private var investigation = ""
+    @State private var refinedChallenge = ""
+    @AppStorage("investigation") private var storageInvestigation = ""
+    @AppStorage("refinedChallenge") private var storageRefinedChallenge = ""
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             ZStack {
-            Color(.sRGB, red: 1, green: 1, blue: 1)
-                .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 5) {
-                
-                HStack {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.backward")
+                Color(.sRGB, red: 1, green: 1, blue: 1)
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 5) {
+                    
+                    HStack {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrow.backward")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                        }
+                        Spacer()
+                        
+                        Text("Investigation")
                             .font(.largeTitle)
-                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
+                        
+                        Button(action: {
+                            showInformation = true
+                        }) {
+                            Image(systemName: "info.circle")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                        }
+                    }
+                    .padding()
+                    
+                    Text("Opportunities to explore, research and acquire necessary knowledge and skills for recognizing and creating a significant and enduring solution")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: 24))
+                        .padding(.top, 40)
+                        .padding(.bottom, 10.0)
+                    
+                    ZStack(alignment: .topLeading) {
+                        TextEditor(text: $investigation)
+                            .padding(.vertical, 3)
+                            .padding(.horizontal, 5)
+                            .border(Color.black, width: 1)
+                            .multilineTextAlignment(.leading)
+                            .frame(height: 100)
+                            .lineLimit(5)
+                        
+                        if investigation.isEmpty {
+                            Text("Write your investigations here...")
+                                .foregroundColor(.gray)
+                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                        }
+                        
+                        Rectangle()
+                            .opacity(0.00001)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                    }
+                    
+                    Text("Refined Challenge")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: 24))
+                        .padding(.top, 80)
+                        .padding(.bottom, 10.0)
+                    
+                    ZStack(alignment: .topLeading) {
+                        TextEditor(text: $refinedChallenge)
+                            .padding(.vertical, 3)
+                            .padding(.horizontal, 5)
+                            .border(Color.black, width: 1)
+                            .multilineTextAlignment(.leading)
+                            .frame(height: 100)
+                            .lineLimit(5)
+                        
+                        if refinedChallenge.isEmpty {
+                            Text("Write your Refined Challenge here...")
+                                .foregroundColor(.gray)
+                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                        }
+                        
+                        Rectangle()
+                            .opacity(0.00001)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
                     }
                     
                     Spacer()
+                        .padding(.top, 40)
                     
-                    Text("Investigation")
-                        .font(.largeTitle)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    Spacer()
-                    
-                    Button(action: {
-                        showInformation = true
-                    }) {
-                        Image(systemName: "info.circle")
-                            .font(.largeTitle)
-                            .foregroundColor(.black)
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            if investigation.isEmpty || refinedChallenge.isEmpty {
+                                showAlert = true
+                            } else {
+                                showAlert = false
+                                storageInvestigation = investigation
+                                storageRefinedChallenge = refinedChallenge
+                                // Perform any other necessary actions
+                            }
+                        }) {
+                            if investigation.isEmpty && refinedChallenge.isEmpty {
+                                Text("Done")
+                                    .padding()
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .font(.title)
+                                    .cornerRadius(10)
+                            } else {
+                                Text("Update")
+                                    .padding()
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .font(.title)
+                                    .cornerRadius(10)
+                            }
+                        }
                     }
                     
-                    
+                    Spacer()
                 }
                 .padding()
-                
-                Text("Opportunities to explore, research and acquire necessary knowledge and skills for recognising and creating a significant and enduring solution")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 24))
-                    .padding(.top, 40)
-                    .padding(.bottom, 10.0)
-                
-                ZStack(alignment: .topLeading) {
-                    TextEditor(text: $viewModel.Investigate1)
-                        .padding(.vertical, 3)
-                        .padding(.horizontal, 5)
-                        .border(Color.black, width: 1)
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 100)
-                        .lineLimit(5)
-                    
-//                    if investigation.isEmpty {
-//
-//                        Text("Write your investigations here...")
-//                            .foregroundColor(.gray)
-//                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-//                    }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Error"),
+                          message: Text("Please fill in all fields!"),
+                          dismissButton: .default(Text("OK")))
                 }
-                
-                
-                
-                Text("Refined Challenge")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 24))
-                    .padding(.top, 80)
-                    .padding(.bottom, 10.0)
-                
-                
-                ZStack(alignment: .topLeading) {
-                    TextEditor(text: $viewModel.Investigate2)
-                        .padding(.vertical, 3)
-                        .padding(.horizontal, 5)
-                        .border(Color.black, width: 1)
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 100)
-                        .lineLimit(5)
-                    
-//                    if refinedChallenge.isEmpty {
-//
-//                        Text("Write your Refined Challenge here...")
-//                            .foregroundColor(.gray)
-//                            .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-//                    }
+                .sheet(isPresented: $showInformation) {
+                    investigationPopupView()
                 }
-                
-                
-                Spacer()
-                    .padding(.top, 40)
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        showAlert = true
-                        viewModel.saveToDatabase()
-                        investigation = viewModel.Investigate1
-                        refinedChallenge = viewModel.Investigate2
-                    }) {
-                        if investigation.isEmpty && refinedChallenge.isEmpty{
-                            Text("Done")
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .cornerRadius(10)
-                        }
-                        else{
-                            Text("Update")
-                                .padding()
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .font(.title)
-                                .cornerRadius(10)
-                        }
-                    }
-                }
-                Spacer()
-            }
-            .padding()
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Congratulations!"),
-                      message: Text("Remember you can go back anytime to edit this milestone"),
-                      dismissButton: .default(Text("Dismiss")))
-            }
-            .sheet(isPresented: $showInformation) {
-                // Content of the pop-up view
-                investigationPopupView()
             }
         }
-    }
         .onAppear {
-            print("didPerformInitialization value: \(didPerformInitialization)")
             if !didPerformInitialization {
-                viewModel.clearDatabase()
+                // Perform your initialization logic here
                 didPerformInitialization = true
             }
-            viewModel.fetchDataFromDatabase()
+            // Perform any additional logic on view appear
         }
         .navigationBarBackButtonHidden(true)
     }
- }
+}
+
+
+
 
  struct investigationPopupView: View {
      var body: some View {
