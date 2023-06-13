@@ -69,12 +69,12 @@ struct PersonaePage: View {
                              .frame(height: 100)
                              .lineLimit(5)
 
-                         if personae.isEmpty {
-
-                             Text("Describe the persona here... \n\nHint: Don't be afraid to be specific ")
-                                 .foregroundColor(.gray)
-                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-                         }
+//                         if personae.isEmpty {
+//
+//                             Text("Describe the persona here... \n\nHint: Don't be afraid to be specific ")
+//                                 .foregroundColor(.gray)
+//                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+//                         }
                      }
 
 
