@@ -12,29 +12,26 @@ struct BigIdeaPage: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showAlert = false
     @State private var showInformation = false
-    @StateObject private var viewModel = ViewModel()
-    
-    // 11/6 Ling's update
+    @State private var bigIdea1 = ""
+    @State private var bigIdea2 = ""
     @AppStorage("BigIdea1") private var storageBigIdea1 = ""
     @AppStorage("BigIdea2") private var storageBigIdea2 = ""
-
-
+    
     var body: some View {
-        NavigationView{
+        NavigationView {
             ZStack {
                 Color(.sRGB, red: 1, green: 1, blue: 1)
                     .edgesIgnoringSafeArea(.all)
                 VStack(spacing: 5) {
                     
                     HStack {
-
                         Button(action: {
-                                            presentationMode.wrappedValue.dismiss()
-                                        }) {
-                                            Image(systemName: "arrow.backward")
-                                                .font(.largeTitle)
-                                                .foregroundColor(.black)
-                                        }
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "arrow.backward")
+                                .font(.largeTitle)
+                                .foregroundColor(.black)
+                        }
                         Spacer()
                         
                         Text("Big Idea")
@@ -49,8 +46,6 @@ struct BigIdeaPage: View {
                                 .font(.largeTitle)
                                 .foregroundColor(.black)
                         }
-                        
-                        
                     }
                     .padding()
                     
@@ -61,9 +56,7 @@ struct BigIdeaPage: View {
                         .padding(.bottom, 10.0)
                     
                     ZStack(alignment: .topLeading) {
-                        
-                        
-                        TextEditor(text: $viewModel.BigIdea1)
+                        TextEditor(text: $bigIdea1)
                             .padding(.vertical, 3)
                             .padding(.horizontal, 5)
                             .border(Color.black, width: 1)
@@ -71,23 +64,21 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-//                        if storageBigIdea1.isEmpty {
-//                            Text("Write your Big Idea here...")
-//                                .foregroundColor(.gray)
-//                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-//                        }
+                        if bigIdea1.isEmpty {
+                            Text("Write your Big Idea here...")
+                                .foregroundColor(.gray)
+                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                        }
                     }
                     
-   
                     Text("Essential Question")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .font(.system(size: 24))
                         .padding(.top, 80)
                         .padding(.bottom, 10.0)
                     
-                    
                     ZStack(alignment: .topLeading) {
-                        TextEditor(text: $viewModel.BigIdea2)
+                        TextEditor(text: $bigIdea2)
                             .padding(.vertical, 3)
                             .padding(.horizontal, 5)
                             .border(Color.black, width: 1)
@@ -95,35 +86,36 @@ struct BigIdeaPage: View {
                             .frame(height: 100)
                             .lineLimit(5)
                         
-//                        if storageBigIdea1.isEmpty {
-//                            
-//                            Text("Write your Essential Question here...")
-//                                .foregroundColor(.gray)
-//                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
-//                        }
-                    
+                        if bigIdea2.isEmpty {
+                            Text("Write your Essential Question here...")
+                                .foregroundColor(.gray)
+                                .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
+                        }
                     }
-                
                     
                     Spacer()
                         .padding(.top, 40)
                     HStack {
                         Spacer()
                         Button(action: {
-                            showAlert = true
-                            viewModel.saveToDatabase()
-                            storageBigIdea1 = viewModel.BigIdea1
-                            storageBigIdea2 = viewModel.BigIdea2
+                            if bigIdea1.isEmpty || bigIdea2.isEmpty {
+                                showAlert = true
+                            } else {
+                                storageBigIdea1 = bigIdea1
+                                storageBigIdea2 = bigIdea2
+                                showAlert = false
+                                // Perform your logic here if validation passes
+                                // ...
+                            }
                         }) {
-                            if storageBigIdea1.isEmpty && storageBigIdea2.isEmpty{
+                            if storageBigIdea1.isEmpty && storageBigIdea2.isEmpty {
                                 Text("Done")
                                     .padding()
                                     .background(Color.green)
                                     .foregroundColor(.white)
                                     .font(.title)
                                     .cornerRadius(10)
-                            }
-                            else{
+                            } else {
                                 Text("Update")
                                     .padding()
                                     .background(Color.green)
@@ -138,12 +130,11 @@ struct BigIdeaPage: View {
                 }
                 .padding()
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Congratulations!"),
-                          message: Text("Remeber you can go back anytime to edit this milestone"),
-                          dismissButton: .default(Text("Dismiss")))
+                    Alert(title: Text("Error"),
+                          message: Text("Please fill in all fields!"),
+                          dismissButton: .default(Text("OK")))
                 }
                 .sheet(isPresented: $showInformation) {
-                    // Content of the pop-up view
                     BigIdeaPopupView()
                 }
             }
@@ -151,14 +142,15 @@ struct BigIdeaPage: View {
         .onAppear {
             print("didPerformInitialization value: \(didPerformInitialization)")
             if !didPerformInitialization {
-                viewModel.clearDatabase()
-            didPerformInitialization = true
+                // Perform your initialization logic here
+                didPerformInitialization = true
             }
-            viewModel.fetchDataFromDatabase()
+            // Perform any additional logic on view appear
         }
         .navigationBarBackButtonHidden(true)
     }
 }
+
 
 
 struct BigIdeaPopupView: View {
