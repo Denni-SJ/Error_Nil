@@ -69,6 +69,13 @@ struct BigIdeaPage: View {
                                 .foregroundColor(.gray)
                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
                         }
+                        
+                        Rectangle()
+                            .opacity(0.00001)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
                     }
                     
                     Text("Essential Question")
@@ -91,6 +98,13 @@ struct BigIdeaPage: View {
                                 .foregroundColor(.gray)
                                 .padding(EdgeInsets(top: 12, leading: 9, bottom: 0, trailing: 0))
                         }
+                        
+                        Rectangle()
+                            .opacity(0.00001)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.sendAction(#selector(UIResponder.becomeFirstResponder), to: nil, from: nil, for: nil)
+                            }
                     }
                     
                     Spacer()
@@ -150,6 +164,7 @@ struct BigIdeaPage: View {
         .navigationBarBackButtonHidden(true)
     }
 }
+
 
 
 
